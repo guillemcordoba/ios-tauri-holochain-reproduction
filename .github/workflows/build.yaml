@@ -1,0 +1,29 @@
+name: "release"
+on:
+  push: 
+    branches: [main]
+
+jobs:
+  publish-tauri:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-11]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - uses: actions/checkout@v2
+
+      - name: install Rust stable
+        uses: actions-rs/toolchain@v1
+        with:
+          override: true
+          toolchain: stable
+
+      - name: Install and prepare
+        run: |
+          rustup target add aarch64-apple-ios
+          cargo build --target aarch64-apple-ios
