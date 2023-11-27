@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-11]
+        platform: [macos-14]
 
     runs-on: ${{ matrix.platform }}
     steps:
