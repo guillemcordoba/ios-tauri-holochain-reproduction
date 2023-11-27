@@ -26,4 +26,4 @@ jobs:
       - name: Install and prepare
         run: |
           rustup target add aarch64-apple-ios
-          cargo build --target aarch64-apple-ios
+          cd src-tauri && cargo build --target aarch64-apple-ios
